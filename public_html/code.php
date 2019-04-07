@@ -40,4 +40,4 @@ var_dump(pol_check($p));
 
 
 
- ?>
+ ?>З
