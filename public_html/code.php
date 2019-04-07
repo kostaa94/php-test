@@ -1,14 +1,17 @@
-<?php   
-$p='Sum summus mus';
-
+<?php
+/*берет начальную строку из файла(input.txt)*/   
+$p=file_get_contents('input.txt');
 /*сравнение обычной переменной с перевернутой*/
 function reverse_comparison($str){
-if ($str==strrev($str)) {
+if ($str==mb_strrev($str)) {
 	return true;
 }
 else return false;
 }
-
+/*для кириллицы*/
+function mb_strrev($str, $enc='UTF-8'){
+    return mb_convert_encoding( strrev( mb_convert_encoding($str, 'UTF-16BE', $enc) ), $enc, 'UTF-16LE');
+}
 /*проход через все варианты полиндромов и выбор наибольшего*/
 function pol_check($p){
 $p=mb_strtolower($p);
@@ -40,9 +43,6 @@ for ($i=0; $i<=mb_strlen($p);$i++){
 return $result;		
 }
 /*вывод результата*/
-var_dump(pol_check($p));
-
-
-
-
+$result=pol_check($p);
+echo $result[1];
  ?>
